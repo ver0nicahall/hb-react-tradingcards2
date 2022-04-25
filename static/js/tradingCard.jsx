@@ -64,7 +64,19 @@ function AddTradingCard(props) {
   const [skill, setSkill] = React.useState("");
   function addNewCard() {
     // TO BE IMPLEMENTED
-    alert('trying to add new card');
+    fetch("/add-card", {
+      method: 'POST',
+      body: JSON.stringify({'name': name, 'skill': skill}),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        alert('You have added a new card!');
+      })
+    
   }
   return (
     <React.Fragment>
